@@ -1,0 +1,5 @@
+# Netlify (mangomatrix.ai, served from NidhiAI-Solutions/website-public).
+# The app's routes exist only in the browser: any address that is not a file
+# here — /app/cases, /login, /reset-password — is served the app, which routes
+# it. A file that exists, such as /privacy-policy.html, is served as itself.
+/*  /index.html  200
