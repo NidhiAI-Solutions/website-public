@@ -1,0 +1,29 @@
+# Written by scripts/site-bundle.mjs for this site; not edited by hand.
+
+[build]
+  publish = "dist"
+
+# The host calls only the relative /api: this site's pds-core.
+[[redirects]]
+  from = "/api/*"
+  to = "https://asia-south1-pds-core-staging.cloudfunctions.net/api/:splat"
+  status = 200
+  force = true
+
+# The host's routes exist only in the browser; a file is served as itself.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# The frame protocol's client library, loaded by every app's origin (APP-02).
+[[headers]]
+  for = "/frame/v1/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+
+# pm/plan.md §4.3. COOP/COEP wait for a check that they do not stop the frames.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Origin-Agent-Cluster = "?1"
